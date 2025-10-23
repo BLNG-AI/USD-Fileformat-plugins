@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: lukka/get-cmake@latest
         with:
-            cmakeVersion: "~3.25.0"
+            cmakeVersion: "~3.26.0"
 
       - uses: actions/checkout@v4
 
