@@ -15,3 +15,4 @@ PRIVATE
 
 gtest_add_tests(TARGET fbxSanityTests AUTO)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SanityCube.fbx" "${CMAKE_CURRENT_BINARY_DIR}/SanityCube.fbx" COPYONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cube.usd" "${CMAKE_CURRENT_BINARY_DIR}/cube.usd" COPYONLY)
