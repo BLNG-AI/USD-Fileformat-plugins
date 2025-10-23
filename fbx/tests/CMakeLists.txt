@@ -1,6 +1,6 @@
 include(GoogleTest)
 
-add_executable(fbxSanityTests sanityTests.cpp)
+add_executable(fbxSanityTests sanityTests.cpp util.cpp)
 
 usd_plugin_compile_config(fbxSanityTests)
 
@@ -10,6 +10,7 @@ PRIVATE
     usd
     GTest::gtest
     GTest::gtest_main
+    fbxsdk::fbxsdk
 )
 
 gtest_add_tests(TARGET fbxSanityTests AUTO)
