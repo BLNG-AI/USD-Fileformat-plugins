@@ -15,7 +15,7 @@ gltf:
     - support EXT_materials_specular_edge_color & EXT_materials_clearcoat_color
     - add generator metadata to USD
     - fix various crashes
-    - support bitangents/tangents during import/emport
+    - support bitangents/tangents during import/export
     - fix inverted normal maps
 obj:
     - replace backslash with slash in texture filepath
@@ -23,7 +23,7 @@ obj:
     - allow single value for ke material setting
 ply:
     - fix reading gsplat sh coefficients
-    - fix export issues when not all meshs have uvs or normals
+    - fix export issues when not all meshes have uvs or normals
     - remove clipping to SH0 for Gsplat
     - fix GSplat import and export and add support to SH4
 spz:
@@ -44,6 +44,7 @@ utility:
     - improve shared file format args
     - refactor input struct & material processing
     - fix for crash in smooth normals computation
+    - update test baseline images for 24.11 renderer changes
 cmake:
     - switch from cmake FetchContent to CPM
     - updating openimageio cmake
