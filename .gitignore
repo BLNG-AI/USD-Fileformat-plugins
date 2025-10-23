@@ -55,6 +55,3 @@ test/assets/gltf/*.usd
 test/assets/obj/*/*.usd
 test/assets/ply/*.usd
 test/assets/stl/*.usd
-test/assets/psirts/*
-test/assets/integration_tests/*
-
