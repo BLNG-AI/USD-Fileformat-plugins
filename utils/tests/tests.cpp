@@ -237,6 +237,7 @@ TEST(FileFormatUtilsTests, writeUsdPreviewSurface)
     ASSERT_USDA(layer, "data/baseline_writeUsdPreviewSurface.usda");
 }
 
+#ifdef USD_FILEFORMATS_ENABLE_ASM
 TEST(FileFormatUtilsTests, writeASM)
 {
     SdfLayerRefPtr layer = SdfLayer::CreateAnonymous("Scene.usda");
@@ -260,6 +261,7 @@ TEST(FileFormatUtilsTests, writeASM)
 
     ASSERT_USDA(layer, "data/baseline_writeASM.usda");
 }
+#endif // USD_FILEFORMATS_ENABLE_ASM
 
 TEST(FileFormatUtilsTests, writeOpenPBR)
 {
