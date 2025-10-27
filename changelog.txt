@@ -1,4 +1,4 @@
-v1.1.2  October 22nd, 2025
+v1.2.0  October 22nd, 2025
 fbx:
     - fix mesh import when fbx mesh is a root node
     - do not require `gtest` if tests are disabled
