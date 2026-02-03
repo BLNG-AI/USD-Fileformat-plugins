@@ -114,6 +114,7 @@ importCameras(ImportGltfContext& ctx)
         const tinygltf::Camera& gCamera = ctx.gltf->cameras[i];
         Camera& usdCamera = ctx.usd->cameras[i];
         GfCamera& uCamera = usdCamera.camera;
+        usdCamera.name = gCamera.name;
         usdCamera.displayName = gCamera.name;
         if (gCamera.type == "perspective") {
             uCamera.SetProjection(GfCamera::Perspective);
@@ -978,6 +979,7 @@ importMaterials(ImportGltfContext& ctx)
         // gm = glTF material, m = USD material
         const tinygltf::Material& gm = ctx.gltf->materials[i];
         Material& m = ctx.usd->materials[i];
+        m.name = gm.name;
         m.displayName = gm.name.empty() ? "Material" + std::to_string(i) : gm.name;
 
         // KHR_materials_pbrSpecularGlossiness data, in extensions, requires some cherrypicking.
@@ -1639,11 +1641,13 @@ importMeshes(ImportGltfContext& ctx)
             if (skipLoadingData) {
                 continue;
             }
+            mesh.name = gmesh.name;
             mesh.displayName = gmesh.name;
             // When we have multiple GLTF primitives that we turn into meshes, we create names that
             // are derived from the primitive index instead of just duplicating the name.
             if (gmesh.primitives.size() > 1) {
                 mesh.displayName = mesh.displayName + "_primitive" + std::to_string(j);
+                mesh.name = mesh.displayName;
             }
 
             // POSITION is required in GLTF
@@ -1895,6 +1899,7 @@ importSkeletons(ImportGltfContext& ctx)
         Skeleton& skeleton = ctx.usd->skeletons[skinIndex];
 
         // Populate the skeleton with the data from the skin
+        skeleton.name = skin.name;
         skeleton.displayName = skin.name;
         skeleton.joints = PXR_NS::VtTokenArray(skin.joints.size());
         skeleton.jointNames = PXR_NS::VtTokenArray(skin.joints.size());
@@ -2059,6 +2064,7 @@ importAnimationTracks(ImportGltfContext& ctx)
          animationTrackIndex++) {
         const tinygltf::Animation& animation = ctx.gltf->animations[animationTrackIndex];
         AnimationTrack& track = ctx.usd->animationTracks[animationTrackIndex];
+        track.name = animation.name;
         track.displayName = animation.name;
     }
 }
@@ -2379,6 +2385,7 @@ importLights(ImportGltfContext& ctx)
 
         auto [lightIndex, light] = ctx.usd->addLight();
 
+        light.name = gltfLight.name;
         light.displayName = gltfLight.name;
         if (gltfLight.color.size() >= 3) {
             light.color[0] = gltfLight.color[0];
@@ -2587,6 +2594,7 @@ int _traverseNodes(ImportGltfContext& ctx, std::vector<int>& skinnedNodes, int& 
     Node& n = ctx.usd->nodes[usdNodeIndex];
     ctx.nodeMap[nodeIndex] = usdNodeIndex;
     ctx.parentMap[nodeIndex] = parentIndex;
+    n.name = node.name;
     n.displayName = node.name;
     // Validate translation vector size before accessing elements
     if (node.translation.size() >= 3) {
